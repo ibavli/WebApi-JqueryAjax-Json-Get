@@ -10,6 +10,27 @@
     <meta name="viewport" content="width=device-width" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <title>Index</title>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnJsonResult").click(
+                function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:13683/api/Veriler/GetInsanlar',
+                        dataType: 'json',
+                        success: function (data) {
+                            $.each(data, function (index, val) {
+                                var isimsoyisim = val.Ad + ' ' + val.Soyad;
+                                console.log(isimsoyisim);
+                                $("#isimler").append("<li>" + isimsoyisim + "</li>");
+                            });
+                        }
+                    });
+                }
+            );
+        });
+
+    </script>
 </head>
 <body>
     <div>
@@ -17,9 +38,7 @@
     </div>
 
     <div>
-        <ol id="isimler">
-
-        </ol>
+        <ol id="isimler"></ol>
     </div>
 </body>
 </html>
